@@ -34,6 +34,10 @@ public class Main {
 			selectionSort();
 			printMenu();
 			break;
+		case "c":
+			insertionSort();
+			printMenu();
+			break;
 		case "q":
 			System.out.println("Program shutting down.");
 			System.exit(0);
@@ -43,6 +47,24 @@ public class Main {
 			printMenu();
 			break;
 		}
+	}
+
+	public void insertionSort() {
+		int[] array = { 3, 10, 1, 2, 9, 8, 2, 5, 7, 6 };
+		System.out.println("Selection Sort:");
+		System.out.println(arrayToString(array));
+		for (int i = 1; i < array.length; i++) {
+			int value = array[i];
+			int hole = i;
+			while ((hole > 0) && (array[hole - 1] > value)) {
+				array[hole] = array[hole - 1];
+				hole--;
+			}
+			array[hole] = value;
+			System.out.println(arrayToString(array));
+		}
+		System.out.println("Worst case time-complexity: O(n^2)");
+		System.out.println();
 	}
 
 	public void selectionSort() {
@@ -60,8 +82,6 @@ public class Main {
 					minNum = array[j];
 					minIndex = j;
 				}
-				// Uncomment the following line out to view all n^2 outputs
-				// System.out.println(arrayToString(array));
 			}
 			int a = array[divider];
 			int b = array[minIndex];
@@ -69,8 +89,7 @@ public class Main {
 			array[divider] = b;
 			System.out.println(arrayToString(array));
 		}
-		System.out
-				.println("Worst case time-complexity: O(n^2)\nTo see all n^2 outputs, uncomment out the System.out.print in bubbleSort()");
+		System.out.println("Worst case time-complexity: O(n^2)");
 		System.out.println();
 	}
 
