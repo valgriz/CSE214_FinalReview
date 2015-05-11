@@ -47,8 +47,23 @@ public class Main {
 
 	public void bubbleSort() {
 		int[] array = { 3, 10, 1, 2, 9, 8, 2, 5, 7, 6 };
-		System.out.println("Bubble Sort:\nBase Array:");
+		System.out.println("Bubble Sort:");
 		System.out.println(arrayToString(array));
+		for (int i = 0; i < array.length; i++) {
+			for (int j = 0; j < array.length - 1; j++) {
+				if (array[j] > array[j + 1]) {
+					int a = array[j];
+					int b = array[j + 1];
+					array[j + 1] = a;
+					array[j] = b;
+				}
+				// Uncomment the following line out to view all n^2 outputs
+				// System.out.println(arrayToString(array));
+			}
+			System.out.println(arrayToString(array));
+		}
+		System.out
+				.println("Worst case time-complexity: O(n^2)\nTo see all n^2 outputs, uncomment out the System.out.print in bubbleSort()");
 		System.out.println();
 	}
 
