@@ -46,7 +46,17 @@ public class Main {
 	}
 
 	public void bubbleSort() {
-		System.out.println("Bubble Sort:\nBase Array:\n|3|10|1|2|9|8|2|5|7|6|");
+		int[] array = { 3, 10, 1, 2, 9, 8, 2, 5, 7, 6 };
+		System.out.println("Bubble Sort:\nBase Array:");
+		System.out.println(arrayToString(array));
 		System.out.println();
+	}
+
+	public String arrayToString(int[] array) {
+		String ret = "|";
+		for (int i = 0; i < array.length; i++) {
+			ret += array[i] + "|";
+		}
+		return ret;
 	}
 }
