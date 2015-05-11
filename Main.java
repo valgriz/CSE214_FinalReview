@@ -19,7 +19,7 @@ public class Main {
 
 	public void printMenu() {
 		System.out
-				.println("Steve's Sick Sorting Algorithm Review\n(A) Bubble Sort\n(B) Selection Sort\n(C) Insertion Sort\n(D) Quick Sort\n(E) Merge Sort\n(F) Radix Sort\n(G) Merge Sort\n(H) Counting Sort\n(Q) Quit");
+				.println("Steve's Sick Sorting Algorithm Review\n(A) Bubble Sort\n(B) Selection Sort\n(C) Insertion Sort\n(D) Quick Sort\n(E) Merge Sort\n(F) Radix Sort\n(G) Heap Sort\n(H) Counting Sort\n(Q) Quit");
 		inputListener();
 	}
 
@@ -42,6 +42,10 @@ public class Main {
 			quickSort();
 			printMenu();
 			break;
+		case "e":
+			mergeSort();
+			printMenu();
+			break;
 		case "q":
 			System.out.println("Program shutting down.");
 			System.exit(0);
@@ -51,6 +55,66 @@ public class Main {
 			printMenu();
 			break;
 		}
+	}
+
+	public void mergeSort() {
+		int[] array = { 15, 3, 2, 1, 2, 19, 9, 4, 8, 11, 10, 7, 6, 18, 1, 5, 20 };
+		System.out.println("Merge Sort:");
+		System.out.println(arrayToString(array));
+		mergeSortSplit(array);
+		System.out.println("Worst case time-complexity: O(nlogn)");
+		System.out.println();
+	}
+
+	public void mergeSortSplit(int[] array) {
+		int length = array.length;
+		if (length > 1) {
+			int divider = length / 2;
+			int[] left = new int[divider];
+			int[] right = new int[length - divider];
+			for (int i = 0; i < divider; i++) {
+				left[i] = array[i];
+			}
+			for (int i = divider; i < length; i++) {
+				right[i - divider] = array[i];
+			}
+			mergeSortSplit(left);
+			mergeSortSplit(right);
+			mergeSortMerge(left, right, array);
+		}
+		System.out.println(arrayToString(array));
+	}
+
+	public void mergeSortMerge(int[] left, int[] right, int[] array) {
+		int i = 0;
+		int li = 0;
+		int ri = 0;
+
+		int n = array.length;
+		int ln = left.length;
+		int rn = right.length;
+
+		while ((li < ln) && (ri < rn)) {
+			if (left[li] < right[ri]) {
+				array[i] = left[li];
+				li++;
+			} else {
+				array[i] = right[ri];
+				ri++;
+			}
+			i++;
+		}
+		while (li < ln) {
+			array[i] = left[li];
+			i++;
+			li++;
+		}
+		while (ri < rn) {
+			array[i] = right[ri];
+			i++;
+			ri++;
+		}
+
 	}
 
 	public void quickSort() {
