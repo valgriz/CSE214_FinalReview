@@ -38,6 +38,10 @@ public class Main {
 			insertionSort();
 			printMenu();
 			break;
+		case "d":
+			quickSort();
+			printMenu();
+			break;
 		case "q":
 			System.out.println("Program shutting down.");
 			System.exit(0);
@@ -49,9 +53,51 @@ public class Main {
 		}
 	}
 
+	public void quickSort() {
+		int[] array = { 3, 2, 1, 2, 9, 4, 8, 11, 10, 7, 6, 1, 5 };
+		System.out.println("Quick Sort:");
+		System.out.println(arrayToString(array));
+		int start = 0;
+		int end = array.length - 1;
+		quickSortSort(array, start, end);
+		System.out.println("Worst case time-complexity: O(n^2)\nAverage case time-complexity: O(nlogn)");
+		System.out.println();
+	}
+
+	public void quickSortSort(int[] array, int start, int end) {
+		if (start < end) {
+			int partitionIndex = quickSortPartition(array, start, end);
+			quickSortSort(array, start, partitionIndex - 1);
+			quickSortSort(array, partitionIndex + 1, end);
+			System.out.println(arrayToString(array));
+		} else {
+			// finished
+		}
+	}
+
+	public int quickSortPartition(int[] array, int start, int end) {
+		int storedIndex = start;
+		int pivotIndex = end;
+		int pivotValue = array[end];
+		for (int i = start; i < end; i++) {
+			if (array[i] < pivotValue) {
+				int a = array[i];
+				int b = array[storedIndex];
+				array[storedIndex] = a;
+				array[i] = b;
+				storedIndex++;
+			}
+		}
+		int a = array[pivotIndex];
+		int b = array[storedIndex];
+		array[storedIndex] = a;
+		array[pivotIndex] = b;
+		return storedIndex;
+	}
+
 	public void insertionSort() {
 		int[] array = { 3, 10, 1, 2, 9, 8, 2, 5, 7, 6 };
-		System.out.println("Selection Sort:");
+		System.out.println("Insertion Sort:");
 		System.out.println(arrayToString(array));
 		for (int i = 1; i < array.length; i++) {
 			int value = array[i];
